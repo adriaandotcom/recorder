@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+sleep 2
+
+for f in $(find /root/recordings -type f -name *.mp3); do
+
+    # skip files in use
+    if [[ `lsof $f` ]]; then
+        continue
+    fi
+
+    # define and get the variables
+    radioname=$(basename $(dirname "$f"))
+    file=$(basename "$f")
+    filename=$(echo $file | cut -f1 -d".")
+    timestamp="${filename%_*}"
+    sequence="${filename#*_}"
+    sequence_number=$(echo $sequence | sed 's/^0*//')
+
+    # calculate the start time
+    if [ -z "$sequence_number" ]; then
+        amazon_filename=$timestamp
+    else
+        amazon_filename=$(($timestamp + $sequence_number * 5 * 60))
+    fi
+
+    # echo "file: $f; timestamp: $timestamp; seq: $sequence_number; amazon_filename: $amazon_filename"
+
+    s3cmd put $f "s3://recordings.watiseropderadio.nl/radio/$radioname/$amazon_filename.mp3"
+    rm $f
+
+done
+
