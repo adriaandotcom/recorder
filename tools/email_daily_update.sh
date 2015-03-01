@@ -10,6 +10,6 @@ mp3_files_couter=`find /root/recordings/ -name "*.mp3" | wc -l`
 
 message="Amazon AWS\nS3 storage: $usage_readable\n\nDitial Ocean droplet\nDisk usage: $disk_usage%\nMP3 files: $mp3_files_couter"
 
-echo -e "$message"
+# echo -e "$message"
 
-# echo -e "$message" | mail -s "Daily recorder report of $day" mail@byadriaan.nl
+echo -e "$message" | mail -s "Daily recorder report of $day" mail@byadriaan.nl
