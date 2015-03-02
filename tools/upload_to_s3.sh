@@ -29,8 +29,13 @@ for f in $(find /root/recordings -type f -name *.mp3); do
 
     # echo "file: $f; timestamp: $timestamp; seq: $sequence_number; amazon_filename: $amazon_filename"
 
-    s3cmd put $f "s3://recordings.watiseropderadio.nl/radio/$radioname/$amazon_filename.mp3"
+    amazon_url="recordings.watiseropderadio.nl/radio/$radioname/$amazon_filename.mp3"
+
+    s3cmd put $f "s3://$amazon_url"
     rm $f
+
+    # data="timestamp=$timestamp&url=https://$amazon_url"
+    # curl -X POST -d "$data" http://requestb.in/ynnqhuyn
 
 done
 
