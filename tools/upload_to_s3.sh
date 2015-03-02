@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-sleep 2
+if ! [ -t 0 ]; then
+  # this is a cronjob
+  sleep 2
+fi
 
 for f in $(find /root/recordings -type f -name *.mp3); do
 
