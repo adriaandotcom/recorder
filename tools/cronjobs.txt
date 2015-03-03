@@ -1,0 +1,14 @@
+0 * * * * /root/cronjobs/radio/538.sh > /dev/null 2>&1
+0 * * * * /root/cronjobs/radio/slamfm.sh > /dev/null 2>&1
+0 * * * * /root/cronjobs/radio/3fm.sh > /dev/null 2>&1
+0 * * * * /root/cronjobs/radio/qmusic.sh > /dev/null 2>&1
+0 * * * * /root/cronjobs/radio/skyradio.sh > /dev/null 2>&1
+0 * * * * /root/cronjobs/radio/radio2.sh > /dev/null 2>&1
+0 * * * * /root/cronjobs/radio/arrow.sh > /dev/null 2>&1
+0 * * * * /root/cronjobs/radio/100nl.sh > /dev/null 2>&1
+0 * * * * /root/cronjobs/radio/beyoungfm.sh > /dev/null 2>&1
+0 * * * * /root/cronjobs/radio/kxradio.sh > /dev/null 2>&1
+0 * * * * /root/cronjobs/radio/veronica.sh > /dev/null 2>&1
+*/1 * * * * /root/cronjobs/tools/upload_to_s3.sh > /dev/null 2>&1
+15 * * * * ntpdate ntp.ubuntu.com pool.ntp.org > /dev/null 2>&1
+2 18 * * * /root/cronjobs/tools/email_daily_update.sh > /dev/null 2>&1
