@@ -22,20 +22,20 @@ for f in $(find /root/recordings -type f -name *.mp3); do
 
     # calculate the start time
     if [ -z "$sequence_number" ]; then
-        amazon_filename=$timestamp
+        timestamp_start=$timestamp
     else
-        amazon_filename=$(($timestamp + $sequence_number * 5 * 60))
+        timestamp_start=$(($timestamp + $sequence_number * 5 * 60))
     fi
 
-    # echo "file: $f; timestamp: $timestamp; seq: $sequence_number; amazon_filename: $amazon_filename"
+    # echo "file: $f; timestamp: $timestamp; seq: $sequence_number; timestamp_start: $timestamp_start"
 
-    amazon_url="recordings.watiseropderadio.nl/radio/$radioname/$amazon_filename.mp3"
+    amazon_url="recordings.watiseropderadio.nl/radio/$radioname/$timestamp_start.mp3"
 
     s3cmd put $f "s3://$amazon_url"
     rm $f
 
-    # data="timestamp=$timestamp&url=https://$amazon_url"
-    # curl -X POST -d "$data" http://requestb.in/ynnqhuyn
+    data="radio_slug=$radioname&timestamp=$timestamp_start&url=https://$amazon_url"
+    curl -X POST -d "$data" http://watiseropderadio.nl/add/recorder
 
 done
 
