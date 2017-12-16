@@ -3,7 +3,7 @@
 source /root/cronjobs/tools/init.sh
 
 radio_name="skyradio"
-radio_stream="http://8623.live.streamtheworld.com:80/SKYRADIOAAC_SC"
-output_bitrate="64k"
+radio_stream="http://20103.live.streamtheworld.com/SKYRADIOAAC.aac"
+output_bitrate="128k"
 
 source /root/cronjobs/tools/record.sh
