@@ -3,8 +3,7 @@
 source /root/cronjobs/tools/init.sh
 
 radio_name="538"
-radio_stream="http://vip-icecast.538.lw.triple-it.nl:80/RADIO538_MP3"
-
+radio_stream="https://20073.live.streamtheworld.com/RADIO538AAC.aac"
 output_bitrate="128k"
 
 source /root/cronjobs/tools/record.sh
